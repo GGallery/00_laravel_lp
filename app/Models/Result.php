@@ -10,7 +10,6 @@ class Result extends Model
     use HasFactory;
 
     protected $fillable = [
-        'guest_token',
         'text_data',
         'created_at',
         'updated_at',

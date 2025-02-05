@@ -27,11 +27,6 @@ class GuestController extends Controller
 
     public function submitAnswers(Request $request)
     {
-        $guestToken = $request->cookie('guest_token');
-
-        // if (!$guestToken) {
-        //     return redirect()->route('index')->withErrors(['error' => 'Guest token non trovato.']);
-        // }
 
         // Prende le risposte escludendo il token csrf
         $answers = $request->except('_token');
@@ -76,7 +71,6 @@ class GuestController extends Controller
 
         // Salva il risultato nel database
         Result::create([
-            'guest_token' => $guestToken,
             'text_data' => json_encode($answersData),
             'created_at' => now(),
             'updated_at' => now(),
