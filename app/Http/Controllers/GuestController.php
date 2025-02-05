@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Answer;
 use App\Models\Profile;
+use App\Models\Question;
 use App\Models\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -27,6 +28,16 @@ class GuestController extends Controller
 
         // Prende le risposte escludendo il token csrf
         $answers = $request->except('_token');
+
+        // Recupera tutte le domande dal database
+        $questions = Question::all();
+
+        // Verifica se tutte le domande hanno una risposta
+        foreach ($questions as $question) {
+            if (!isset($answers[$question->id])) {
+                return redirect()->route('index')->withErrors(['error' => 'Devi rispondere a tutte le domande.']);
+            }
+        }
 
         // Variabile d'appoggio contatore
         $counts = ['A' => 0, 'B' => 0, 'C' => 0];
