@@ -22,7 +22,7 @@ class GuestController extends Controller
         // Verifica se il cookie guest_token è presente
         if ($request->hasCookie('guest_token')) {
             // dd('Cookie guest_token presente: ' . $request->cookie('guest_token'));
-            return redirect()->route('index')->withErrors(['error' => 'Non puoi rifare il questionario prima che il cookie scada.']);
+            return redirect()->route('index')->withErrors(['error' => 'Aspetta 1 minuto per rifare il questionario.']);
         }
 
         // Prende le risposte escludendo il token csrf
@@ -81,10 +81,18 @@ class GuestController extends Controller
 
         // Imposta il cookie guest_token con il valore created_at
         return redirect()->route('result')
-        ->cookie('guest_token', $createdAt->timestamp, 1) // 1 minuto
-        ->cookie('profile', $profile, 1); // 1 minuto
+        ->cookie('guest_token', $createdAt->timestamp, 1, null, null, true, true, false, 'Strict') // 1 minuto
+        ->cookie('profile', $profile, 1, null, null, true, true, false, 'Strict'); // 1 minuto
+        /*
+        Durata del Cookie: 1 (1 minuto)
+        Path: null (predefinito)
+        Dominio: null (predefinito)
+        HttpOnly: true
+        Secure: true
+        Raw: false (predefinito)
+        SameSite: 'Strict'
+        */
     }
-
     public function result(Request $request)
     {
         // Ottiene il profilo del risultato dal cookie
