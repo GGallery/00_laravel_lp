@@ -13,8 +13,6 @@
         <h1 class="text-3xl font-bold">header</h1>
     </header>
 
-    {{-- commento per commit token  --}}
-
     <main class="p-4">
         <div>
             <a href="{{ route('result') }}">
@@ -28,6 +26,9 @@
             @csrf
             @foreach($questions as $question)
                 <div class="mb-4">
+
+                    <?//php var_dump($question); ?>
+
                     <p class="font-bold">{{ $question->question }}</p>
                     @foreach($question->answers as $answer)
                         <label class="block">
