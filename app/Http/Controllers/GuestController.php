@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Answer;
+use App\Models\Profile;
 use App\Models\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -63,8 +64,9 @@ class GuestController extends Controller
             $profile = 'PROFILO PEPERONCINO';
         }
 
+        $description = Profile::getDescription($profile);
         $answersData['profile'] = $profile;
-
+        $answersData['description'] = $description;
         
         // Salva il risultato nel database
         $createdAt = now();
@@ -88,6 +90,23 @@ class GuestController extends Controller
         // Ottiene il profilo del risultato dal cookie
         $profile = $request->cookie('profile');
 
-        return view('result', compact('profile'));
+        // Recupera il risultato dal database usando il cookie guest_token
+        $guestToken = $request->cookie('guest_token');
+        // dd('guest_token: ' . $guestToken); // Valore del cookie
+        // \Log::info('guest_token: ' . $guestToken); // Valore del cookie
+
+        $result = Result::findByGuestToken($guestToken);
+        // dd('result: ', $result); // Risultato della query
+        // \Log::info('result: ' . json_encode($result)); // Risultato della query
+
+        if (!$result) {
+            return redirect()->route('index')->withErrors(['error' => 'Risultato non trovato o il cookie è scaduto.']);
+        }
+        
+        // Decodifica il JSON per ottenere la descrizione
+        $textData = json_decode($result->text_data, true);
+        $description = $textData['description'];
+
+        return view('result', compact('profile', 'description'));
     }
 }
