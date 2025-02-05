@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Answer;
+use App\Models\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -14,11 +15,10 @@ class GuestController extends Controller
         // Controlla se il cookie esiste già
         if (!$request->hasCookie('guest_token')) {
 
-            // Genera un token random di 40 caratteri
-            $token = Str::random(40);
+            $createdAt = now()->timestamp;
             return response()
                 ->view('index')
-                ->cookie('guest_token', $token, 1); // 1 minuto
+                ->cookie('guest_token', $createdAt, 1); // 1 minuto
         }
 
         // se il cookie esiste ritorna 'index' 
@@ -27,27 +27,34 @@ class GuestController extends Controller
 
     public function submitAnswers(Request $request)
     {
+        $guestToken = $request->cookie('guest_token');
+
+        // if (!$guestToken) {
+        //     return redirect()->route('index')->withErrors(['error' => 'Guest token non trovato.']);
+        // }
+
         // Prende le risposte escludendo il token csrf
         $answers = $request->except('_token');
 
         // Variabile d'appoggio contatore
         $counts = ['A' => 0, 'B' => 0, 'C' => 0];
 
-        foreach ($answers as $answerId) {
+        $answersData = [];
+
+        foreach ($answers as $questionId => $answerId) {
             // Con find trova la risposta nel database
             $answer = Answer::find($answerId);
             if ($answer) {
+                
+                $answersData[$questionId] = $answer->answer;
                 // incrementa il contatore appropriato
-                switch ($answer->answer) {
-                    case 'a) Risposta A':
-                        $counts['A']++;
-                        break;
-                    case 'b) Risposta B':
-                        $counts['B']++;
-                        break;
-                    case 'c) Risposta C':
-                        $counts['C']++;
-                        break;
+                
+                if (strpos($answer->answer, 'A') !== false) {
+                    $counts['A']++;
+                } elseif (strpos($answer->answer, 'B') !== false) {
+                    $counts['B']++;
+                } elseif (strpos($answer->answer, 'C') !== false) {
+                    $counts['C']++;
                 }
             }
         }
@@ -64,6 +71,16 @@ class GuestController extends Controller
         } elseif ($result == 'C') {
             $profile = 'PROFILO PEPERONCINO';
         }
+
+        $answersData['profile'] = $profile;
+
+        // Salva il risultato nel database
+        Result::create([
+            'guest_token' => $guestToken,
+            'text_data' => json_encode($answersData),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
         return redirect()->route('result')->cookie('profile', $profile, 1); // 1 minuto
     }
