@@ -12,21 +12,17 @@ class GuestController extends Controller
 {
     public function index(Request $request)
     {
-        // Controlla se il cookie esiste già
-        if (!$request->hasCookie('guest_token')) {
-
-            $createdAt = now()->timestamp;
-            return response()
-                ->view('index')
-                ->cookie('guest_token', $createdAt, 1); // 1 minuto
-        }
-
-        // se il cookie esiste ritorna 'index' 
         return view('index');
     }
 
     public function submitAnswers(Request $request)
     {
+
+        // Verifica se il cookie guest_token è presente
+        if ($request->hasCookie('guest_token')) {
+            // dd('Cookie guest_token presente: ' . $request->cookie('guest_token'));
+            return redirect()->route('index')->withErrors(['error' => 'Non puoi rifare il questionario prima che il cookie scada.']);
+        }
 
         // Prende le risposte escludendo il token csrf
         $answers = $request->except('_token');
@@ -69,14 +65,22 @@ class GuestController extends Controller
 
         $answersData['profile'] = $profile;
 
+        
         // Salva il risultato nel database
+        $createdAt = now();
+
         Result::create([
             'text_data' => json_encode($answersData),
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $createdAt,
+            'updated_at' => $createdAt,
         ]);
 
-        return redirect()->route('result')->cookie('profile', $profile, 1); // 1 minuto
+        // dd('Impostazione cookie guest_token: ' . $createdAt->timestamp, 'Profilo: ' . $profile);
+
+        // Imposta il cookie guest_token con il valore created_at
+        return redirect()->route('result')
+        ->cookie('guest_token', $createdAt->timestamp, 1) // 1 minuto
+        ->cookie('profile', $profile, 1); // 1 minuto
     }
 
     public function result(Request $request)

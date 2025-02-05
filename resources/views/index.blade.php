@@ -14,6 +14,17 @@
     </header>
 
     <main class="p-4">
+        @if ($errors->any())
+            <div class="alert alert-danger bg-red-200 text-red-800 p-4 mb-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+
         <div>
             <a href="{{ route('result') }}">
                 <input type="button" value="Vai al risultato" class="bg-orange-200 px-4 py-2">
