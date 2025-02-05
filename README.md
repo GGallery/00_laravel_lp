@@ -23,7 +23,10 @@ app/Models
 └ Guest.php
 └ Profile.php
 └ Question.php
+└ Result.php
 
+config
+└ profiles.php
 ```
 
 ## Controllers
@@ -53,3 +56,11 @@ app/Models
 - Recupera il risultato dal database usando il cookie `guest_token`.
 - Decodifica il JSON per ottenere la descrizione.
 - <b>Ritorna la vista `result` con le variabili per il profilo e la descrizione.</b>
+
+## Models
+
+### Result
+#### findByGuestToken($guestToken)
+- Metodo statico per trovare un record utilizzando il `guest_token`.
+- Converte il timestamp Unix in una stringa di data e ora.
+- Esegue una query per trovare il record con il campo `created_at` corrispondente.
