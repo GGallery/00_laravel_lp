@@ -18,17 +18,17 @@
     {{-- <header class="bg-red-800 text-white p-2"> --}}
     <header class="bg-white drop-shadow-xl">
         <div id="top-bar" class="min-h-2 bg-red-800"></div>
-        <div class="flex justify-around items-center">
+        <div class="flex justify-around items-center py-3">
             <div class="ms-8">
-                <h1 class="text-3xl font-bold text-red-800">Che afrodisiaco sei?</h1>
-                <h3 class="text-gray">a cura di Sara Padovano, Psicologa - Psicoterapeuta - Sessuologa</h3>
-                <p class="text-gray"><a href="https://www.sarapadovano.com/" target="_blank">www.sarapadovano.com</a></p>
+                <h1 id="title" class="text-red-800">Che afrodisiaco sei?</h1>
+                <h3 class="text-gray-800">a cura di Sara Padovano, Psicologa - Psicoterapeuta - Sessuologa</h3>
+                <p class="bold-line" style=""><a href="https://www.sarapadovano.com/" target="_blank">www.sarapadovano.com</a></p>
             </div>
             <img src="{{ asset('images/hot-pepper.jpg') }}" alt="img-peperoncino" style="width: 100px;">
         </div>
     </header>
 
-    <main class="p-4 bg-gray-100">
+    <main class="py-12 px-4 bg-gray-100">
         @if ($errors->any())
             <div class="alert alert-danger bg-red-200 text-center text-red-800 p-4 mb-4">
                 <ul>
@@ -42,8 +42,8 @@
         <form action="{{ route('submitAnswers') }}" method="POST">
             @csrf
             @foreach($questions as $question)
-                <div class="mx-auto max-w-xl p-3 rounded-xl bg-white mb-4">
-                    <p class="font-bold">{{ $question->question }}</p>
+                <div class="mx-auto max-w-2xl p-6 rounded-xl bg-white mb-8 drop-shadow-xl">
+                    <p class="bold-line">{{ $question->question }}</p>
                     @foreach($question->answers as $answer)
                         <label class="block">
                             <input type="radio" name="{{ $question->id }}" value="{{ $answer->id }}"> {{ $answer->answer }}
@@ -52,7 +52,7 @@
                 </div>
             @endforeach
             <div class="mx-auto w-fit">
-                <button type="submit" class="bg-red-700 rounded-xl text-white px-8 shadow-xl py-2">Invia</button>
+                <button type="submit" class="bg-red-700 rounded-xl text-white px-8 shadow-xl py-2 font-bold">INVIA</button>
             </div>
         </form>
 

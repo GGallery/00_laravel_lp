@@ -5,3 +5,13 @@ body {
 .question {
     font-size: 1.5rem;
 }
+
+#title {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.bold-line {
+    color: #333333;
+    font-weight: bold;
+}
