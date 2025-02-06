@@ -117,6 +117,11 @@ class GuestController extends Controller
         // dd('guest_token: ' . $guestToken); // Valore del cookie
         // \Log::info('guest_token: ' . $guestToken); // Valore del cookie
 
+        // Verifica se il cookie guest_token è presente
+        if (!$guestToken) {
+            return redirect()->route('index')->withErrors(['error' => 'Il cookie è scaduto. Per favore, rifai il questionario.']);
+        }     
+
         $result = Result::findByGuestToken($guestToken);
         // dd('result: ', $result); // Risultato della query
         // \Log::info('result: ' . json_encode($result)); // Risultato della query
