@@ -15,11 +15,20 @@
     <title>Document</title>
 </head>
 <body>
-    <header class="bg-red-800 text-white p-2 flex justify-between items-center">
-        {{-- <h1 class="text-3xl font-bold">header</h1> --}}
+    {{-- <header class="bg-red-800 text-white p-2"> --}}
+    <header class="bg-white drop-shadow-xl">
+        <div id="top-bar" class="min-h-2 bg-red-800"></div>
+        <div class="flex justify-around items-center">
+            <div class="ms-8">
+                <h1 class="text-3xl font-bold text-red-800">Che afrodisiaco sei?</h1>
+                <h3 class="text-gray">a cura di Sara Padovano, Psicologa - Psicoterapeuta - Sessuologa</h3>
+                <p class="text-gray"><a href="https://www.sarapadovano.com/" target="_blank">www.sarapadovano.com</a></p>
+            </div>
+            <img src="{{ asset('images/hot-pepper.jpg') }}" alt="img-peperoncino" style="width: 100px;">
+        </div>
     </header>
 
-    <main class="p-4">
+    <main class="p-4 bg-gray-100">
         @if ($errors->any())
             <div class="alert alert-danger bg-red-200 text-center text-red-800 p-4 mb-4">
                 <ul>
@@ -30,15 +39,10 @@
             </div>
         @endif
 
-        {{-- <div>
-            <a href="{{ route('result') }}">
-                <input type="button" value="Vai al risultato" class="bg-orange-200 px-4 py-2">
-            </a>
-        </div> --}}
         <form action="{{ route('submitAnswers') }}" method="POST">
             @csrf
             @foreach($questions as $question)
-                <div class="mx-auto max-w-xl p-3 rounded-xl bg-gray-200 mb-4">
+                <div class="mx-auto max-w-xl p-3 rounded-xl bg-white mb-4">
                     <p class="font-bold">{{ $question->question }}</p>
                     @foreach($question->answers as $answer)
                         <label class="block">
@@ -48,7 +52,7 @@
                 </div>
             @endforeach
             <div class="mx-auto w-fit">
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2">Invia</button>
+                <button type="submit" class="bg-red-700 rounded-xl text-white px-8 shadow-xl py-2">Invia</button>
             </div>
         </form>
 

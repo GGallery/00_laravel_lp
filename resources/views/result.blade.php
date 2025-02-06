@@ -22,7 +22,7 @@
 
     <main class="p-4">
 
-            <div class="card bg-gray-200 p-4 max-w-3xl mx-auto">
+            <div class="card rounded-xl bg-gray-200 p-4 max-w-3xl mx-auto">
 
                 @if($profile == 'PROFILO CIOCCOLATO')
                     <div class="wrapper-content">
