@@ -47,6 +47,8 @@ config
 - Trova le risposte nel database e incrementa i contatori appropriati.
 - Determina il profilo basato sulla risposta con il maggior numero di voti.
 - Recupera la descrizione del profilo dal modello `Profile`.
+- Recupera il timestamp corrente dal database per garantire la coerenza tra PHP e MySQL.
+- Converte il timestamp in formato Unix.
 - Salva il risultato nel database con il timestamp `created_at`.
 - Imposta i cookie `guest_token` e `profile` con una durata di 1 minuto.
 - <b>Reindirizza alla rotta `result`.</b>
