@@ -41,7 +41,7 @@ class GuestController extends Controller
         }
 
         // Variabile d'appoggio contatore
-        $counts = ['A' => 0, 'B' => 0, 'C' => 0];
+        $counts = ['a' => 0, 'b' => 0, 'c' => 0];
 
         $answersData = [];
 
@@ -53,12 +53,12 @@ class GuestController extends Controller
                 $answersData[$questionId] = $answer->answer;
                 // incrementa il contatore appropriato
                 
-                if (strpos($answer->answer, 'A') !== false) {
-                    $counts['A']++;
-                } elseif (strpos($answer->answer, 'B') !== false) {
-                    $counts['B']++;
-                } elseif (strpos($answer->answer, 'C') !== false) {
-                    $counts['C']++;
+                if (strpos($answer->answer, 'a)') !== false) {
+                    $counts['a']++;
+                } elseif (strpos($answer->answer, 'b)') !== false) {
+                    $counts['b']++;
+                } elseif (strpos($answer->answer, 'c)') !== false) {
+                    $counts['c']++;
                 }
             }
         }
@@ -68,11 +68,11 @@ class GuestController extends Controller
         // Variabile d'appoggio per profilo cioccolato, vaniglia, peperoncino
         $profile = '';
 
-        if ($result == 'A') {
+        if ($result == 'a') {
             $profile = 'PROFILO CIOCCOLATO';
-        } elseif ($result == 'B') {
+        } elseif ($result == 'b') {
             $profile = 'PROFILO VANIGLIA';
-        } elseif ($result == 'C') {
+        } elseif ($result == 'c') {
             $profile = 'PROFILO PEPERONCINO';
         }
 
