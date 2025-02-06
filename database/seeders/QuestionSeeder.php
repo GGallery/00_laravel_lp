@@ -15,20 +15,20 @@ class QuestionSeeder extends Seeder
      */
     public function run(): void {
         $questions = [
-            'Domanda 1',
-            'Domanda 2',
-            'Domanda 3',
-            'Domanda 4',
-            // 'Domanda 5',
-            // 'Domanda 6',
-            // 'Domanda 7',
-            // 'Domanda 8',
-            // 'Domanda 9',
-            // 'Domanda 10',
-            // 'Domanda 11',
-            // 'Domanda 12',
-            // 'Domanda 13',
-            // 'Domanda 14',
+            '1. La stagione migliore per l\'amore',
+            '2. I preliminari migliori sono',
+            '3. Mi eccita di più ricordare...',
+            '4. Il dessert si mangia...',
+            '5. La seduzione si gioca a...',
+            '6. Di un cibo mi stimola l\'appetito',
+            '7. Un cioccolatino ripieno di',
+            '8. Il colore del sesso',
+            '9. Di un viaggio mi rimane più impresso il ricordo',
+            '10. Al buio accendo la sua passione con',
+            '11. Il miglior preludio d\'amore è',
+            '12. Il dettaglio hot di un incontro col partner',
+            '13. Di un partner mi stimola "l\'appetito"',
+            '14. Il profumo del sesso ha una nota...',
         ];
 
         foreach ($questions as $question) {
