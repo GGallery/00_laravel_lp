@@ -119,7 +119,7 @@ class GuestController extends Controller
 
         // Verifica se il cookie guest_token è presente
         if (!$guestToken) {
-            return redirect()->route('index')->withErrors(['error' => 'Il cookie è scaduto. Per favore, rifai il questionario.']);
+            return redirect()->route('index')->withErrors(['error' => 'La sessione è scaduta. Per favore, rifai il questionario.']);
         }     
 
         $result = Result::findByGuestToken($guestToken);

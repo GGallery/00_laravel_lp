@@ -28,7 +28,7 @@
         </div>
     </header>
 
-    <main class="py-12 px-4 bg-gray-100">
+    <main class="pb-12 bg-gray-100">
         @if ($errors->any())
             <div class="alert alert-danger bg-red-200 text-center text-red-800 p-4 mb-4">
                 <ul>
@@ -39,7 +39,7 @@
             </div>
         @endif
 
-        <form action="{{ route('submitAnswers') }}" method="POST">
+        <form class="px-4 pt-12" action="{{ route('submitAnswers') }}" method="POST">
             @csrf
             @foreach($questions as $question)
                 <div class="mx-auto max-w-2xl p-6 rounded-xl bg-white mb-8 drop-shadow-xl">
@@ -51,13 +51,13 @@
                     @endforeach
                 </div>
             @endforeach
-            <div class="mx-auto w-fit">
+            <div class="mx-auto w-fit pt-4">
                 <button type="submit" class="bg-red-700 rounded-xl text-white px-8 shadow-xl py-2 font-bold">INVIA</button>
             </div>
         </form>
 
     </main>
-    <footer class="bg-gray-300 text-gray-700 p-2 flex justify-center items-center">
+    <footer class="bg-gray-300 text-gray-700 py-6 flex justify-center items-center">
         {{-- <p>footer</p> --}}
     </footer>
 </body>

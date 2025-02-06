@@ -22,23 +22,23 @@
 
     <main class="p-4">
 
-            <div class="card rounded-xl bg-gray-200 p-4 max-w-3xl mx-auto">
+            <div class="card rounded-xl bg-gray-200 p-8 max-w-3xl mx-auto">
 
                 @if($profile == 'PROFILO CIOCCOLATO')
                     <div class="wrapper-content">
-                        <h2 class="font-bold text-lg" style="color: rgb(83, 43, 41)">PROFILO CIOCCOLATO (maggioranza di A)</h2>
+                        <h2 class="bold-line text-2xl mb-6" style="color: rgb(83, 43, 41)">PROFILO CIOCCOLATO (maggioranza di A)</h2>
                         <p>{!! $description !!}</p>
                     </div>
 
                 @elseif($profile == 'PROFILO VANIGLIA')
                     <div class="wrapper-content">
-                        <h2 class="font-bold text-lg" style="color: rgb(204, 183, 91)">PROFILO VANIGLIA (maggioranza di B)</h2>
+                        <h2 class="bold-line text-2xl mb-6" style="color: rgb(204, 183, 91)">PROFILO VANIGLIA (maggioranza di B)</h2>
                         <p>{!! $description !!}</p>
                     </div>
                 
                 @elseif($profile == 'PROFILO PEPERONCINO')
                     <div class="wrapper-content">
-                        <h2 class="font-bold text-lg" style="color: red">PROFILO PEPERONCINO (maggioranza di C)</h2>
+                        <h2 class="bold-line text-2xl mb-6" style="color: red">PROFILO PEPERONCINO (maggioranza di C)</h2>
                         <p>{!! $description !!}</p>
                     </div>
                 @endif
