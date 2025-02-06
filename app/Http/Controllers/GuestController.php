@@ -9,10 +9,11 @@ use App\Models\Question;
 use App\Models\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class GuestController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         return view('index');
     }
@@ -79,9 +80,12 @@ class GuestController extends Controller
         $answersData['profile'] = $profile;
         $answersData['description'] = $description;
         
-        // Salva il risultato nel database
-        $createdAt = now();
+        // Utilizza time() per ottenere il timestamp Unix
+        $timestamp = time();
+        // Converte il timestamp Unix in un oggetto Carbon
+        $createdAt = Carbon::createFromTimestamp($timestamp)->toDateTimeString();
 
+        // Salva il risultato nel database
         Result::create([
             'text_data' => json_encode($answersData),
             'created_at' => $createdAt,
@@ -92,7 +96,7 @@ class GuestController extends Controller
 
         // Imposta il cookie guest_token con il valore created_at
         return redirect()->route('result')
-        ->cookie('guest_token', $createdAt->timestamp, 1, null, null, true, true, false, 'Strict') // 1 minuto
+        ->cookie('guest_token', $timestamp, 1, null, null, true, true, false, 'Strict') // 1 minuto
         ->cookie('profile', $profile, 1, null, null, true, true, false, 'Strict'); // 1 minuto
         /*
         Durata del Cookie: 1 (1 minuto)
