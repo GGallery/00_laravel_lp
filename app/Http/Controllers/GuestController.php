@@ -9,7 +9,7 @@ use App\Models\Question;
 use App\Models\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class GuestController extends Controller
 {
@@ -80,10 +80,9 @@ class GuestController extends Controller
         $answersData['profile'] = $profile;
         $answersData['description'] = $description;
         
-        // Utilizza time() per ottenere il timestamp Unix
-        $timestamp = time();
-        // Converte il timestamp Unix in un oggetto Carbon
-        $createdAt = Carbon::createFromTimestamp($timestamp)->toDateTimeString();
+        // Recupera il timestamp corrente dal database
+        $createdAt = DB::select('SELECT NOW() as now')[0]->now;
+        $timestamp = strtotime($createdAt);
 
         // Salva il risultato nel database
         Result::create([
