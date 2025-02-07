@@ -15,7 +15,6 @@
     <title>Document</title>
 </head>
 <body>
-    {{-- <header class="bg-red-800 text-white p-2"> --}}
     <header class="bg-white drop-shadow-xl">
         <div id="top-bar" class="min-h-2 bg-red-800"></div>
         <div class="flex justify-around items-center py-3">
