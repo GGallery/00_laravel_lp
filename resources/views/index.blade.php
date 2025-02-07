@@ -56,8 +56,9 @@
         </form>
 
     </main>
-    <footer class="bg-gray-300 text-gray-700 py-6 flex justify-center items-center">
-        {{-- <p>footer</p> --}}
+    <footer class="text-white py-6 flex justify-around items-center">
+        <p>© 2019 Sara Padovano | P.IVA 02092430996</p>
+        <p>© 6</p>
     </footer>
 </body>
 </html>
