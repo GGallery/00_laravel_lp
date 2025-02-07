@@ -27,4 +27,19 @@ body {
 
 footer {
     background-color: #232323;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
+
+#bottom-banner {
+    min-height: 220px; 
+}
+
+@media screen and (max-width: 390px) {  
+ 
+    #bottom-banner {
+        min-height: 270px; 
+    }
+}
+  

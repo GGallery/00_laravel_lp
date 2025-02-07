@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        <div class="bg-gray-300 text-center py-12 mt-14">
+        <div class="bg-gray-300 text-center py-12 mt-14" id="bottom-banner">
             <h3 class="h3-line">Grazie per aver completato il questionario.</h3>
             <h3 class="h3-line">Visita il mio sito: <a href="https://www.sarapadovano.com/" class="text-red-800">www.sarapadovano.com</a></h3>
         </div>

@@ -50,7 +50,7 @@
                     @endforeach
                 </div>
             @endforeach
-            <div class="mx-auto w-fit pt-4">
+            <div class="mx-auto w-fit pt-4" style="min-height: 130px">
                 <button type="submit" class="bg-red-700 rounded-xl text-white px-8 shadow-xl py-2 font-bold">INVIA</button>
             </div>
         </form>
