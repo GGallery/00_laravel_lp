@@ -12,7 +12,7 @@
 
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     @vite('resources/css/app.css')
-    <title>Document</title>
+    <title>Che afrodisiaco sei?</title>
 </head>
 <body>
     <header class="bg-white drop-shadow-xl">
