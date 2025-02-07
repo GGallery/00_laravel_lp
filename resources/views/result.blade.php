@@ -27,10 +27,10 @@
         </div>
     </header>
 
-    <main class="pt-12 pb-14">
+    <main class="pt-12 pb-14 bg-gray-100">
 
         <div class="mx-4">
-            <div class="card rounded-xl bg-gray-200 p-8 max-w-3xl mx-auto">
+            <div class="card rounded-xl bg-white p-8 max-w-3xl mx-auto drop-shadow-xl">
 
                     @if($profile == 'PROFILO CIOCCOLATO')
                         <div class="wrapper-content">
