@@ -12,7 +12,6 @@
 
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     @vite('resources/css/app.css')
-    <title>Che afrodisiaco sei?</title>
     <title>@yield('title', 'Che afrodisiaco sei?')</title>
 </head>
 <body>
