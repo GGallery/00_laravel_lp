@@ -36,6 +36,11 @@ footer {
     min-height: 220px; 
 }
 
+
+form button {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 390px) {  
  
     #bottom-banner {

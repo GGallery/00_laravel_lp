@@ -46,13 +46,13 @@
                     <p class="bold-line">{{ $question->question }}</p>
                     @foreach($question->answers as $answer)
                         <label class="block">
-                            <input type="radio" name="{{ $question->id }}" value="{{ $answer->id }}"> {{ $answer->answer }}
+                            <input type="radio" name="{{ $question->id }}" value="{{ $answer->id }}" {{ old($question->id) == $answer->id ? 'checked' : '' }}> {{ $answer->answer }}
                         </label>
                     @endforeach
                 </div>
             @endforeach
             <div class="mx-auto w-fit pt-4" style="min-height: 130px">
-                <button type="submit" class="bg-red-700 rounded-xl text-white px-8 shadow-xl py-2 font-bold">INVIA</button>
+                <button type="submit" class="bg-red-700 hover:bg-red-900 rounded-xl text-white px-8 shadow-xl py-2 font-bold">INVIA</button>
             </div>
         </form>
 
